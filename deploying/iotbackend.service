@@ -1,0 +1,12 @@
+[Unit]
+Description=Backend for Esp32Manager
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/node /home/USER/git/Esp32Manager/back/server.js
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

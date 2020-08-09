@@ -1,0 +1,7 @@
+.vscode
+.jshintrc
+.jsbeautifyrc
+node_modules
+build
+front/dist
+machine\ learning/model.pkl

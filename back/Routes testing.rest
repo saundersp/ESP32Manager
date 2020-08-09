@@ -1,0 +1,98 @@
+// Test getting esp sensors
+GET http://192.168.137.1:5332/getESPSensors
+Accept: application/json
+
+
+### Test getting unconfigured esp sensors
+GET http://192.168.137.1:5332/getUnconfiguredESPS
+Accept: application/json
+
+
+### Test getting saved configs
+GET http://192.168.137.1:5332/getConfigs
+Accept: application/json
+
+
+### Test turn on "led1" and "led2" on ESP32 named "B4:E6:2D:96:D3:65"
+POST http://192.168.137.1:5332/toggleLed
+Accept: application/json
+Content-Type: application/json
+
+{
+	"mac": "B4:E6:2D:96:D3:65",
+	"leds": [{
+		"name": "led1",
+		"value": true
+	},{
+		"name": "led2",
+		"value": true
+	}]
+}
+
+
+### Test turn off "led1" and "led2" on ESP32 named "B4:E6:2D:96:D3:65"
+POST http://192.168.137.1:5332/toggleLed
+Accept: application/json
+Content-Type: application/json
+
+{
+	"mac": "B4:E6:2D:96:D3:65",
+	"leds": [{
+		"name": "led1",
+		"value": false
+	},{
+		"name": "led2",
+		"value": false
+	}]
+}
+
+
+### Test deleting config for ESP32 named "B4:E6:2D:96:D3:65"
+DELETE http://192.168.137.1:5332/deleteConfig
+Accept: application/json
+Content-Type: application/json
+
+{
+	"mac": "B4:E6:2D:96:D3:65"
+}
+
+
+### Test saving config for ESP32 named "B4:E6:2D:96:D3:65"
+POST http://192.168.137.1:5332/saveConfig
+Accept: application/json
+Content-Type: application/json
+
+{
+	"mac": "B4:E6:2D:96:D3:65",
+	"update_time": 2000,
+	"sensors":[
+		{ "name": "light", "pin": 32 },
+		{ "name": "temp", "pin": 24 }
+	],
+	"leds":[
+		{ "name": "led1", "pin": 19, "value": false },
+		{ "name": "led2", "pin": 21, "value": false }
+	],
+	"isMother": false
+}
+
+
+### Test login
+POST http://192.168.137.1:5332/login
+Accept: application/json
+Content-Type: application/json
+
+{
+	"user": "admin",
+	"pwd": "password"
+}
+
+
+### Test get machine learning prediction of a anomaly
+GET http://192.168.137.1:5332/getPredictions/B4:E6:2D:96:D3:65
+Accept: application/json
+
+
+### Test printing serial message
+PUT http://192.168.137.1:5332/printDebugMessage
+###
